@@ -1,0 +1,2 @@
+class ShnaError(Exception):
+    pass
