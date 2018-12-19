@@ -1,0 +1,4 @@
+Jinja2==2.10
+prompt-toolkit==1.0.14
+PyInquirer==1.0.3
+requests==2.21.0
