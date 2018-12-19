@@ -1,0 +1,9 @@
+
+{% if story.title %}{{ story.title }}{% endif %}
+{% if story.title %}{% for c in story.title %}-{% endfor %}{% endif %}
+{% if story.text %}{{ story.text }}{% endif %}
+{%- if story.url %}Link: {{ story.url }}{% endif %}
+- By: @{{ story.by }}
+- Published: {{ story.time }}
+- Score: {{ story.score }}
+
