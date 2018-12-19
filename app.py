@@ -1,3 +1,4 @@
+"""Main application entry for shna."""
 import PyInquirer
 
 from hnstory import HnStory
@@ -7,6 +8,7 @@ from hnerror import ShnaError
 
 
 def main():
+    """Entry function for shna application."""
     setup_logger()
 
     options = [

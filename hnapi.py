@@ -1,4 +1,9 @@
-class APIs:
+"""APIs and other constants for shna."""
+
+
+class APIs:  # pylint: disable=too-few-public-methods
+    """HN API end points and other constants."""
+
     END_POINT = {
         "best": "https://hacker-news.firebaseio.com/v0/beststories.json",
         "top": "https://hacker-news.firebaseio.com/v0/topstories.json",

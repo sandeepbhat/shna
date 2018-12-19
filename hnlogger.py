@@ -1,3 +1,4 @@
+"""shna logger."""
 import logging
 
 LOGGER_NAME = "shna"

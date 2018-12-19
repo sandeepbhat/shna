@@ -1,17 +1,22 @@
+"""HN story printing helpers."""
 import datetime
-import hnlogger
 import jinja2
+import hnlogger
 
 from hnerror import ShnaError
 
 
-class HnDisplay:
+class HnDisplay:  # pylint: disable=too-few-public-methods
+    """HN display helper class."""
+
     def __init__(self):
+        """Initialization work."""
         self._log = hnlogger.get_logger(__name__)
         self._jinja2_env = None
         self._story_template = None
 
     def _setup(self):
+        """Setup Jinja2 template environment."""
         # If setup already done, just return.
         if self._jinja2_env and self._story_template:
             return
@@ -28,6 +33,7 @@ class HnDisplay:
             raise ShnaError(_err)
 
     def _print_story(self, story: dict):
+        """Print a single story to console."""
         # Convert published time from UTC seconds to human readable.
         pub_time = datetime.datetime.fromtimestamp(story["time"])
         story["time"] = pub_time.strftime("%Y-%m-%d, %H:%M:%S")
@@ -37,6 +43,10 @@ class HnDisplay:
         self._log.info(story_text)
 
     def print_stories(self, stories: list, per_page: int):
+        """Print all stories in the list.
+
+        Limit the output to per_page and wait for user input to show more.
+        """
         # Perform setup if not done already
         self._setup()
 
