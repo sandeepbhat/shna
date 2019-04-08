@@ -29,6 +29,7 @@ class HnDisplay:  # pylint: disable=too-few-public-methods
             )
             # Load the story text template
             self._story_template = self._jinja2_env.get_template("story.template")
+            self._story_summary_template = self._jinja2_env.get_template("story_summary.template")
         except jinja2.TemplateError as _err:
             raise ShnaError(_err)
 
@@ -39,6 +40,13 @@ class HnDisplay:  # pylint: disable=too-few-public-methods
         story["time"] = pub_time.strftime("%Y-%m-%d, %H:%M:%S")
         # Use the Jinja2 text template and create story to be printed.
         story_text = self._story_template.render(story=story)
+        # Print the story.
+        self._log.info(story_text)
+
+    def _print_story_summary(self, story: dict):
+        """Print story as a summary."""
+        # Use the Jinja2 text template and create story to be printed.
+        story_text = self._story_summary_template.render(story=story)
         # Print the story.
         self._log.info(story_text)
 
@@ -58,3 +66,16 @@ class HnDisplay:  # pylint: disable=too-few-public-methods
                     break
             else:
                 self._print_story(story)
+
+    def print_stories_summary(self, stories: list, per_page: int):
+        """Print stories with only summary."""
+        self._setup()
+
+        # Print stories page by page
+        for index, story in enumerate(stories):
+            if index % per_page == 0 and index:
+                continue_key = input("Hit any key to continue or press q to quit\n: ")
+                if continue_key.lower() == "q":
+                    break
+            else:
+                self._print_story_summary(story)

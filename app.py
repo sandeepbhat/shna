@@ -37,7 +37,7 @@ def main():
             # Get HN stories
             stories = hn_story.get_stories(selected["hn_category"], int(selected["limit"]))
             # Print stories on console
-            hn_display.print_stories(stories, 5)
+            hn_display.print_stories_summary(stories, 5)
     except KeyError as _err:
         # Ignore KeyError from pressing ctrl + c
         raise ShnaError(_err)
